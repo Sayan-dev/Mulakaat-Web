@@ -1,8 +1,10 @@
 *{
     font-family: sans-serif;
 }
-h1,h4{
+
+h2,h4{
     text-align: center;
+
 }
 #remote-container video{
     height: auto;
@@ -16,11 +18,20 @@ h1,h4{
     color:white !important;
     background-color: orange !important;
     box-shadow:0 3px 10px rgb(255, 225, 170);
-}
-.overAll{
-    background-color: rgb(255, 251, 244);
+    text-align: center;
 
 }
+.header div{
+    font-size:60px;
+    font-weight: 400;
+
+}
+.jumbotron p{
+    font-size:30px !important;
+    color:rgb(241, 241, 241);
+
+}
+
 
 #me{
     position: relative;
@@ -80,4 +91,9 @@ h1,h4{
     top:40%;
     transform: translateY(-50%);
     transition: 0.5s ease;
+}
+.ending{
+    display:none;
+    text-align: center;
+    color:green;
 }

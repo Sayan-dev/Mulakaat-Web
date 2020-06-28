@@ -132,10 +132,9 @@ const exitCall=(event)=>{
     console.log(localStream)
     localStream.stop()
     client.leave()
-    const button=document.querySelectorAll("button.video").forEach(ele=>{
-
-        ele.parentNode.removeChild(ele)
-    });
+    const buttons=document.querySelector(".buttons")
+    console.log(buttons)
+    buttons.parentNode.removeChild(buttons)
 }
 document.querySelector(".finish").addEventListener('click',(event)=>{
        exitCall(event) 

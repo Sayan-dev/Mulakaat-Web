@@ -15,11 +15,29 @@ let canvasContainer =document.getElementById("canvas-container");
  * @param streamId
  * @description Helper function to add the video stream to "remote-container"
  */
+window.localStorage.setItem('noOfStream',0)
+
 function addVideoStream(streamId){
+    // window.localStorage.setItem('noOfStream',1)
+    // let data=window.localStorage.getItem('noOfStream')
+
+    // console.log("Yaha pr hai",data)
+    // window.localStorage.setItem('noOfStream',parseInt(data)+1)      //Saving number of clients
+    
+
+
+
     let streamDiv=document.createElement("div"); // Create a new div for every stream
-    streamDiv.id=streamId;                       // Assigning id to div
+    streamDiv.id=streamId;                      // Assigning id to div
+    streamDiv.className='col-sm-12 col-md-3 stream'                    // Assigning class to div
     streamDiv.style.transform="rotateY(180deg)"; // Takes care of lateral inversion (mirror image)
     remoteContainer.appendChild(streamDiv);      // Add new div to container
+
+    // let newData=parseInt(data)+1;
+    // newData=Math.ceil(12/parseInt(newData))
+    // document.querySelectorAll('div.stream').forEach(ele=>{
+    //     ele.className=`col-sm-12 col-md-${newData} stream`
+    // })
 }
 /**
  * @name removeVideoStream
@@ -48,12 +66,12 @@ function addCanvas(streamId){
 
     video.addEventListener('play', function() {
         var $this = this; //cache
-        (function loop() {
-            if (!$this.paused && !$this.ended) {
-                ctx.drawImage($this, 0, 0);
-                setTimeout(loop, 1000 / 30); // drawing at 30fps
-            }
-        })();
+        // (function loop() {
+        //     if (!$this.paused && !$this.ended) {
+        //         ctx.drawImage($this, 0, 0);
+        //         setTimeout(loop, 1000 / 30); // drawing at 30fps
+        //     }
+        // })();
     }, 0);
 }
 
@@ -63,16 +81,17 @@ let client = AgoraRTC.createClient({
     mode: 'live',
     codec: "h264"
 });
-
+let localStream
 // Client Setup
 // Defines a client for Real Time Communication
 client.init("4b13657c18cc462ea25d44dc6d14584f",() => console.log("AgoraRTC client initialized") ,handleFail);
 
 // The client joins the channel
-client.join(null,"ugqYq2HDmLelxR5vTM6U",null, (uid)=>{
+client.join(null,"YnQpYpJB03kJFyqDcI17",null, (uid)=>{
+    console.log(client);
 
     // Stream object associated with your web cam is initialized
-    let localStream = AgoraRTC.createStream({
+    localStream = AgoraRTC.createStream({
         streamID: uid,
         audio: true,
         video: true,
@@ -105,3 +124,67 @@ client.on('stream-subscribed', function (evt) {
 //When a person is removed from the stream
 client.on('stream-removed',removeVideoStream);
 client.on('peer-leave',removeVideoStream);
+
+//When you leave the call
+const exitCall=(event)=>{
+    
+    console.log("Hi")
+    console.log(localStream)
+    localStream.stop()
+    client.leave()
+    const button=document.querySelectorAll("button.video").forEach(ele=>{
+
+        ele.parentNode.removeChild(ele)
+    });
+}
+document.querySelector(".finish").addEventListener('click',(event)=>{
+       exitCall(event) 
+
+})
+const toggleMute=(event)=>{
+    //console.log(event.target.className)
+    if(event.target.className==="fas fa-microphone-slash mic-on"){
+            localStream.disableAudio()
+
+            document.querySelector(".mic-on").className="fas fa-microphone mic-off"
+
+    }else{
+        document.querySelector(".mic-off").className="fas fa-microphone-slash mic-on"
+        localStream.enableAudio()
+
+
+    }
+    // document.querySelector(".mic").addEventListener('click',(event)=>{
+        
+    // })
+
+}
+const togglePause=(event)=>{
+    //console.log(event.target.className)
+    if(event.target.className==="fas fa-pause pause"){
+            localStream.disableVideo()
+
+            document.querySelector(".pause").className="fas fa-play play"
+
+    }else{
+        document.querySelector(".play").className="fas fa-pause pause"
+        localStream.enableVideo()
+
+
+    }
+    // document.querySelector(".mic").addEventListener('click',(event)=>{
+        
+    // })
+
+}
+document.querySelector(".mic").addEventListener('click',(event)=>{
+    toggleMute(event)
+
+})
+document.querySelector(".toggle").addEventListener('click',(event)=>{
+    togglePause(event)
+
+})
+
+
+

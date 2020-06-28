@@ -2,27 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mulakaat Video Call Demo</title>
+    <title>Video Call Demo</title>
     <link rel="stylesheet" href="./styles/style.css">
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <!-- Font Awsome -->
+    <script src="https://kit.fontawesome.com/62611ba2e5.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-<h1>
-    Mulakaat Video Call Demo<br><small style="font-size: 14pt">For Web</small>
-</h1>
+    <div  class="header jumbotron jumbotron-fluid">
+        <h1 >
+            Video Call Demo<br><small style="font-size: 14pt">Powered by Agora.io</small>
+        </h1>
+    </div>
 
-<h4>On Call :</h4>
-<div id="me"></div>
-<div id="remote-container"></div>
+<div class='overAll'>
+    <div class="row">
+    
+    <div class="col-sm-12 col-md-3">
+    <h4>My Feed :</h4></br>
+
+        
+    <button type="button" class="finish video btn btn-warning"><i class="fas fa-stop"></i></button>
+    <button type="button" class="mic video btn btn-warning"><i class="fas fa-microphone-slash mic-on"></i></button>
+    <button type="button" class="toggle video btn btn-warning"><i class="fas fa-pause pause"></i></button>
+        <div id="me" class="meToo"></div>
 
 
-<!-- <h4>Remote Feeds :</h4>
-<div id="remote-container"> -->
+    </div>
+    <div class="col-sm-12 col-md-9">
+           
+        <h4>Remote Feeds :</h4>
+        <div class="container">
+            
+                <div id="remote-container" class='row'>
 
-<!-- </div>
-<h4>Canvas :</h4>
-<div id="canvas-container"> -->
+                </div>
+                <!-- <h4>Canvas :</h4> -->
+
+
+            
+
+        </div>
+        <div id="canvas-container">
+        
+        </div>
+
+    </div>
+
+    </div>
+    
+ 
+
 
 </div>
+
 
 <script src="scripts/AgoraRTCSDK-2.4.0.js"></script>
 <script src="scripts/script.js"></script>

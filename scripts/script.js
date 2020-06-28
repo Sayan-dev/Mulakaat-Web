@@ -130,8 +130,12 @@ const exitCall=(event)=>{
     
     console.log("Hi")
     console.log(localStream)
-    localStream.stop()
-    client.leave()
+    client.leave(()=>{
+        localStream.disableAudio()
+        localStream.disableVideo()
+        localStream.stop()
+        
+    })
     const overall=document.querySelector(".overAll")
     //console.log(buttons)
     

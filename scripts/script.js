@@ -48,7 +48,7 @@ function removeVideoStream (evt) {
     let stream = evt.stream;
     stream.stop();
     let remDiv=document.getElementById(stream.getId());
-    remDiv.parentNode.removeChild(remDiv);
+    remDiv.removeChild(remDiv);
     console.log("Remote stream is removed " + stream.getId());
 }
 
@@ -146,10 +146,13 @@ const toggleMute=(event)=>{
     if(event.target.className==="fas fa-microphone-slash mic-on"){
             localStream.disableAudio()
 
-            document.querySelector(".mic-on").className="fas fa-microphone mic-off"
+            document.querySelector(".mic_on").className="mic_off video";
+            document.querySelector(".mic-on").className="fas fa-microphone-slash mic-off";
+
 
     }else{
-        document.querySelector(".mic-off").className="fas fa-microphone-slash mic-on"
+        document.querySelector(".mic_off").className="mic_on video";
+        document.querySelector(".mic-off").className="fas fa-microphone-slash mic-on";
         localStream.enableAudio()
 
 
@@ -161,13 +164,16 @@ const toggleMute=(event)=>{
 }
 const togglePause=(event)=>{
     //console.log(event.target.className)
-    if(event.target.className==="fas fa-pause pause"){
+    if(event.target.className==="fas fa-pause play"){
             localStream.disableVideo()
 
-            document.querySelector(".pause").className="fas fa-play play"
+            document.querySelector(".play_on").className="play_off video";
+            document.querySelector(".play").className="fas fa-play pause";
+
 
     }else{
-        document.querySelector(".play").className="fas fa-pause pause"
+        document.querySelector(".play_off").className="play_on video";
+        document.querySelector(".pause").className="fas fa-pause play";
         localStream.enableVideo()
 
 
@@ -177,11 +183,11 @@ const togglePause=(event)=>{
     // })
 
 }
-document.querySelector(".mic").addEventListener('click',(event)=>{
+document.querySelector(".mic_on").addEventListener('click',(event)=>{
     toggleMute(event)
 
 })
-document.querySelector(".toggle").addEventListener('click',(event)=>{
+document.querySelector(".play_on").addEventListener('click',(event)=>{
     togglePause(event)
 
 })

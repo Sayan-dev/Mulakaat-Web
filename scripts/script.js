@@ -48,7 +48,7 @@ function removeVideoStream (evt) {
     let stream = evt.stream;
     stream.stop();
     let remDiv=document.getElementById(stream.getId());
-    remDiv.removeChild(remDiv);
+    remDiv.parentNode.removeChild(remDiv);
     console.log("Remote stream is removed " + stream.getId());
 }
 

@@ -58,7 +58,7 @@ h1,h4{
 .stop,.mic-on,.play{
     color:orange;
     position: relative;
-    left:25%;
+    left:30%;
     top:40%;
     transform: translateY(-50%);
     transition: 0.5s ease;
@@ -76,7 +76,7 @@ h1,h4{
     color:white;
 
     position: relative;
-    left:25%;
+    left:30%;
     top:40%;
     transform: translateY(-50%);
     transition: 0.5s ease;

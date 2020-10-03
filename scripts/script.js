@@ -84,10 +84,10 @@ let client = AgoraRTC.createClient({
 let localStream
 // Client Setup
 // Defines a client for Real Time Communication
-client.init("4b13657c18cc462ea25d44dc6d14584f",() => console.log("AgoraRTC client initialized") ,handleFail);
+client.init("6f86823b70194a7d8c9dd6ca75b712dc",() => console.log("AgoraRTC client initialized") ,handleFail);
 
 // The client joins the channel
-client.join(null,"YnQpYpJB03kJFyqDcI17",null, (uid)=>{
+client.join(null,"M",null, (uid)=>{
     console.log(client);
 
     // Stream object associated with your web cam is initialized
